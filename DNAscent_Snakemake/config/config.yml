@@ -1,9 +1,9 @@
 # UCSC genome address
-nanopore_samples_sheet: "config/samples_nanopore.csv"
+nanopore_samples_sheet: "config/samples_nanopore.csv"  # verify the name of the sample sheet
 label_order: "EdU,BrdU"
 genome_address: "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz"
 #genome_address: "https://hgdownload.soe.ucsc.edu/goldenPath/danRer11/bigZips/danRer11.fa.gz"
-basecalling_mode: "sup"
+basecalling_mode: "hac"   # hac - high accuracy, sup - super-high accuracy
 dorado_device: "cuda:all"
 # Modules
 minimap2: "minimap2/2.28"
@@ -11,10 +11,10 @@ dorado: "dorado/0.8.1"
 cuda: "cuda/12"
 samtools: "samtools/1.18"
 dnascent: "dnascent/4.0.3"
-pod5_directory: "/s/sansam-lab/pod5Test"
+pod5_directory: "/s/sansam-lab/pod5Test" # path to your output pod5 file
 #pod5_directory: "./data/"
-chunks_per_bam: "2"
+chunks_per_bam: "2" # Depends on how big you expect your bam file to be
 samtools_threads: "12"
-minimum_read_length: 30000
+minimum_read_length: 30000 # To trim reads below this length. Depends on the N50 of your sequencing run
 detect_threads: "12"
 forkSense_threads: "12"
