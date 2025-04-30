@@ -6,10 +6,12 @@ __default__:
     mem: 16GB
     output: results/logs/slurm-%x.%A.%a.log
     gres: ""
+    constraint: ""
 Dorado_baseCalling_alignment:
     partition: gpu
     # constrain based on the availability of suitable gpus (ie l40s or a100)
-    gres: "--gres=gpu:1 --constraint=l40s"
+    gres: "gpu:1"
+    constraint: "l40s|a100"
     cpus-per-task: 6
     mem: 32GB
 make_genome_index:
@@ -23,15 +25,18 @@ split_bams:
 dnascent_index:
     cpus-per-task: 4
     partition: gpu
-    gres: "--gres=gpu:1"
+    gres: "gpu:1"
+    constraint: "l40s|a100"
 dnascent_detect:
     partition: gpu
-    gres: "--gres=gpu:1"
+    gres: "gpu:1"
+    constraint: "l40s|a100"
     cpus-per-task: 12
     mem: 16GB
 dnascent_forksense:
     partition: gpu
-    gres: "--gres=gpu:1"
+    gres: "gpu:1"
+    constraint: "l40s|a100"
     cpus-per-task: 12
     mem: 16GB
 sort_dnascent_detect:
