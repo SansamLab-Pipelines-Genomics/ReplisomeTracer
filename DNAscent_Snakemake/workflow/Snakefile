@@ -120,9 +120,10 @@ rule split_bams:
         config["samtools"]
     shell:
         """
-        in_bam={input}
-        echo "Processing file: $in_bam"
-        ./bin/split_bam_by_reads.sh "$in_bam" "./results/split_bams/" "{params.chunks_per_bam}" "{params.samtools_threads}"
+        for bam in {input}; do
+            echo "Processing file: $bam"
+            ./bin/split_bam_by_reads.sh "$bam" "./results/split_bams/" "{params.chunks_per_bam}" "{params.samtools_threads}"
+        done
         """
 
 
