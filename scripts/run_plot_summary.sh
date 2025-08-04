@@ -4,10 +4,10 @@
 # This shell script is to run the python script 'plot_summary.py'
 
 # How to run:
-# Give permission if not: chmod +x run_plot.sh
-# Run this in the same directory the scripts are stored:
-# Command: ./run_plot.sh <bedgraph_dir> <sample_name>
-# The outputs will be placed in the same directory
+# Give permission if not: chmod +x run_plot_summary.sh
+# Run this in the same directory where the scripts are stored:
+# Command: ./run_plot_summary.sh <bedgraph_dir> <sample_name>
+# The outputs will be placed in the directory where you run the script
 
 # ===Loading modules===
 module purge
