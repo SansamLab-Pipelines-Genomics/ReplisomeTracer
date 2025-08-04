@@ -57,6 +57,7 @@ def read_bedgraph_tracks(directory):
             })
             df["diff"] = df["BrdU"] - df["EdU"]
             paired_tracks.append(df)
+            #paired_tracks.append((base.replace(".bedgraph", ""), df))  # Use when running run_single_pair_boundary.sh
     return paired_tracks
 
 def align_diff_by_minimum(df, window_size=500):
@@ -196,4 +197,5 @@ def plot_domain_boundaries(summary_df, output_prefix):
     for ext in ['png','pdf','svg']:
         fig.savefig(f"{output_prefix}.{ext}", dpi=300, bbox_inches='tight')
     plt.close(fig)
+
 
