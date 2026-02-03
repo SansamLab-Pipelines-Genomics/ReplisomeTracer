@@ -102,28 +102,26 @@ rule demux_alignments:
 #     files = glob(f"{checkpoint_output}/*.bam")
 #     return files
 
-
 ##################################################################
 ##                        Split BAMs                            ##
 ##################################################################
 
 rule split_bams:
     input:
-        expand("results/demuxed/{sample}.bam", sample=samples_table["alias"])
+        "results/demuxed/{sample}.bam"
     output:
-        expand("results/split_bams/{sample}_chunk_{chunk}.bam", sample=samples_table["alias"],chunk=range(int(config["chunks_per_bam"])))
+        expand("results/split_bams/{{sample}}_chunk_{chunk}.bam", chunk=range(int(config["chunks_per_bam"])))
     params:
         chunks_per_bam=config["chunks_per_bam"],
         samtools_threads=config["samtools_threads"],
-        demux_dir="./results/demuxed/"
+        output_dir="./results/split_bams/"
     envmodules:
         config["samtools"]
     shell:
         """
-        in_bam={input}
-        echo "Processing file: $in_bam"
-        ./bin/split_bam_by_reads.sh "$in_bam" "./results/split_bams/" "{params.chunks_per_bam}" "{params.samtools_threads}"
+        ./bin/split_bam_by_reads.sh {input} {params.output_dir} {params.chunks_per_bam} {params.samtools_threads}
         """
+
 
 
 ##################################################################
